@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .animated-gradient {
+            background: linear-gradient(270deg, #34D399, #3B82F6, #8B5CF6);
+            background-size: 600% 600%;
+            animation: gradient 1s ease infinite;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen animated-gradient">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-center text-3xl font-bold mb-6 text-gray-800">Calculator</h1>
+        <div class="mb-4">
+            <label class="block mb-2 text-lg text-gray-700">Angka 1 :</label>
+            <input type="text" id="angka1" class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-lg text-gray-700">Angka 2 :</label>
+            <input type="text" id="angka2" class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+            <label class="block mb-2 text-lg text-gray-700">Hasil :</label>
+            <input type="text" id="hasil" class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
+        </div>
+        <div class="flex space-x-2">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" onclick="calculate('+')">+</button>
+            <button class="bg-green-600 text-white px-4 py-2 rounded shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" onclick="calculate('-')">-</button>
+            <button class="bg-yellow-600 text-white px-4 py-2 rounded shadow hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" onclick="calculate('*')">*</button>
+            <button class="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" onclick="calculate('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            const angka1 = parseFloat(document.getElementById('angka1').value);
+            const angka2 = parseFloat(document.getElementById('angka2').value);
+            let result;
+
+            if (isNaN(angka1) || isNaN(angka2)) {
+                result = 'Invalid input';
+            } else {
+                switch (operation) {
+                    case '+':
+                        result = angka1 + angka2;
+                        break;
+                    case '-':
+                        result = angka1 - angka2;
+                        break;
+                    case '*':
+                        result = angka1 * angka2;
+                        break;
+                    case '/':
+                        result = angka1 / angka2;
+                        break;
+                    default:
+                        result = 'Invalid operation';
+                }
+            }
+
+            document.getElementById('hasil').value = result;
+        }
+    </script>
+</body>
+</html>
